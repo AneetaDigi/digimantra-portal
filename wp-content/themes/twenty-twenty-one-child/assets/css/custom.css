@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+body {
+  background-color: unset !important;
+}
+* {
+  font-family: "Lato", sans-serif;
+}
+.header_section {
+  background-image: linear-gradient(139deg, #10c3de 100%, #26a0f4 0);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+}
+a:focus {
+  background-color: inherit;
+}
+.site-logo {
+  margin: 0;
+}
+p,
+ul,
+li {
+  font-size: 18px;
+}
+.site a:focus:not(.wp-block-button__link):not(.wp-block-file__button) {
+  outline: unset !important;
+  text-decoration: unset !important;
+  text-decoration-skip-ink: none !important;
+  background: unset !important;
+}
+/* --banner_section ---*/
+#main {
+  padding: 0;
+  padding-bottom: 100px;
+  background-color: #f6f6f6;
+}
+.banner_section {
+  padding: 100px 0;
+  background-image: linear-gradient(139deg, #10c3de 100%, #26a0f4 0);
+}
+.banner_wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+.banner_content h3 {
+  font-weight: bold;
+}
+.banner_logo {
+  padding: 50px 10px;
+  background: #fff;
+}
+.banner_content {
+  margin-left: 15px;
+}
+
+/* clock_section--- */
+section.clock_section {
+  margin-top: -60px;
+  margin-bottom: 15px;
+}
+.clock_wrapper {
+  display: flex;
+  justify-content: space-around;
+  padding: 30px 0;
+}
+.clock_section .bg-white,
+.instructions_section .bg-white,
+.confirm_form .bg-white {
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+  -webkit-box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+}
+.minuts,
+.problems {
+  display: flex;
+  align-items: center;
+}
+.clock_content {
+  margin-left: 5px;
+}
+.clock_img img {
+  width: 60px;
+}
+.instructions_section .title {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+.instru_content p,
+.instru_content ul {
+  margin: 10px 0;
+}
+.instru_content ol {
+  padding-bottom: 15px;
+}
+.instru_content ol li {
+  padding: 10px 0;
+}
+
+section.confirm_form {
+  margin-top: 20px;
+}
+.confirm_form_wrap {
+  text-align: center;
+  max-width: 615px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.confirm_form_wrap p {
+  margin-bottom: 15px;
+}
+.confirm_input {
+  margin-bottom: 15px;
+}
+.confirm_input input {
+  width: 100%;
+  border: 0 !important;
+  border-bottom: 1px solid #ddd !important;
+  background: #fff !important;
+  font-size: 18px;
+}
+input:focus {
+  outline: 0 !important;
+}
+.confirm_checkbox {
+  padding: 15px 0;
+}
+.confirm_btn button {
+  padding: 12px 24px;
+  border-radius: 5px;
+  border: 0;
+  color: #00000042;
+  text-transform: uppercase;
+  font-size: 16px;
+  background-color: #e0e0e0;
+}
+.confirm_checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #00000042;
+  border-radius: 5px;
+}
+.confirm_btn i {
+  margin-left: 5px;
+}
+/* ---technology---page ---*/
+
+.technology_section .container.bg-white,
+.question_section .container.bg-white {
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+  -webkit-box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+}
+.tech_btn {
+  background-image: linear-gradient(139deg, #26a0f4 0, #10c3de 100%);
+  margin: 5px;
+}
+.tech_btn a {
+  display: block;
+  font-size: 18px;
+  color: #fff;
+  text-transform: uppercase;
+}
+/* -----questions-page ----- */
+.ques_options li {
+  list-style: lower-alpha;
+}
+.questions > li {
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+.ques_options li input {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #3375b9;
+}
+.ques_options li input[type="radio"]:checked {
+  border: 2px solid #3375b9;
+}
+.ques_options li input:after {
+  width: 12px;
+  height: 12px;
+  left: 2px;
+  top: 2px;
+}
+.submit_btn {
+  margin-top: 40px;
+}
+.submit_btn .btn,
+.start_btn a {
+  background-image: linear-gradient(139deg, #26a0f4 0, #10c3de 100%);
+  font-size: 18px;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 12px 24px;
+}
+.play_btn {
+  background-image: linear-gradient(139deg, #26a0f4 0, #10c3de 100%);
+  padding: 18px 36px;
+  color: #fff;
+  font-size: 36px;
+  text-transform: uppercase;
+}
+.playbutton_section .container {
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+  -webkit-box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+}
+.play_btn_content {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.play_btn_content li {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.8;
+  text-transform: uppercase;
+  word-spacing: 4px;
+}
+.play_btn_content li::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f00c";
+  display: inline-block;
+  padding-right: 15px;
+  vertical-align: middle;
+  font-weight: 900;
+  background: -webkit-linear-gradient(#26a0f4, #26a0f4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
