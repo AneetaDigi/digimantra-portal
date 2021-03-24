@@ -25,7 +25,7 @@ if(isset($_POST["submit"])) {
 $usr_email = $_POST['user_emails'];
 
    if($mail==$usr_email){
-   	header("Location: digimantra-portal/instructions/
+   	header("Location: /instructions/
 ");
    	
    }
