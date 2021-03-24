@@ -3,7 +3,7 @@
 
 <script>
 /*setTimeout(function () {
-   window.location.href= '<?php bloginfo('url'); ?>/thank-you/'; // the redirect goes here
+   window.location.href= 'http://localhost/digimantra-portal/thank-you/'; // the redirect goes here
 
 },20000); // 5 seconds*/
 </script>
@@ -83,10 +83,10 @@ get_header();
 
 <br>
 <button id="btn-start-recording" style="display:none;">Start Recording</button>
-<button id="btn-stop-recording" disabled >Stop Recording</button>
+<button id="btn-stop-recording" style="display:none;" disabled >Stop Recording</button>
 
 <hr>
-<video id="playerVideo" controls autoplay playsinline height="200px" width="200px;"></video>
+<video id="playerVideo"  autoplay playsinline height="200px" width="200px;"></video>
 
 <span id="blobURL"></span><br>
 <span id="download"></span>
@@ -196,7 +196,7 @@ var res = str1.concat(str2, str3);
 var fileType = 'video'; // or "audio"
 
 
-var fileName = 'C:/xampp/htdocs/digimantra-portal/wp-content/themes/twenty-twenty-one-child/uploads/'.concat(pathArray).concat(str3) ;  // or "wav"
+var fileName = '/wp-content/themes/twenty-twenty-one-child/uploads/'.concat(pathArray).concat(str3) ;  // or "wav"
 console.log(fileName);
 }
 var test = document.getElementById('video_ct').value ;
@@ -355,7 +355,7 @@ if ( isset( $_POST['submit'] ) ){
 $myurl = $_POST['video_url'];
 
 
-$myurl1 =  file_put_contents('C:/xampp/htdocs/digimantra-portal/'.$myurl.'.mkv', $_POST['video_ct']);
+//$myurl1 =  file_put_contents('C:/xampp/htdocs/digimantra-portal/'.$myurl.'.mkv', $_POST['video_ct']);
 
 
 
@@ -392,5 +392,11 @@ echo '<script type="text/javascript">
 
 
 ?>
+<script>
+  $(".qsm-btn").click(function(){
+    
+  $('form').css('display','none');
+  });
+  </script>
 
 </html>

@@ -5,13 +5,7 @@ body {
 * {
   font-family: "Lato", sans-serif;
 }
-.header_section {
-  background-image: linear-gradient(139deg, #10c3de 100%, #26a0f4 0);
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 9;
-}
+
 a:focus {
   background-color: inherit;
 }
@@ -35,25 +29,45 @@ li {
   padding-bottom: 100px;
   background-color: #f6f6f6;
 }
-.banner_section {
-  padding: 100px 0;
-  background-image: linear-gradient(139deg, #10c3de 100%, #26a0f4 0);
-}
+
 .banner_wrapper {
   display: flex;
   align-items: flex-end;
 }
-.banner_content h3 {
-  font-weight: bold;
+h1.smpl-title {
+    color: #fff;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 48px;
+  letter-spacing: 1px;
 }
+.confirm_checkbox a {
+    color: #1d75ba;
+    font-weight: 600;
+}
+.confirm_checkbox a:hover {
+    text-decoration: unset;
+}
+/*
 .banner_logo {
-  padding: 50px 10px;
-  background: #fff;
+    padding-bottom: 9px;
 }
+*/
+.banner_logo {
+    display: none;
+}
+p.smpl-sub-title {
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 1px;
+}/*
 .banner_content {
   margin-left: 15px;
 }
-
+*/
+.bnrr-cntnt {
+    padding-left: 0;
+}
 /* clock_section--- */
 section.clock_section {
   margin-top: -60px;
@@ -76,25 +90,33 @@ section.clock_section {
   align-items: center;
 }
 .clock_content {
-  margin-left: 5px;
+  margin-left: 10px;
+}
+h5.minut {
+    color: #fff;
+    font-size: 20px;
 }
 .clock_img img {
   width: 60px;
 }
-.instructions_section .title {
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
+p.assmnt {
+    color: #fff;
+    font-size: 16px;
 }
-.instru_content p,
-.instru_content ul {
-  margin: 10px 0;
+.bg-frm {
+    box-shadow: 0px 1px 8px 0px #777777 !important;
+}
+.instructions_section .title {
+    text-align: center;
+    color: #1d75ba;
+    font-size: 28px;
+    font-weight: 600;
+    padding-bottom: 6px;
 }
 .instru_content ol {
   padding-bottom: 15px;
 }
-.instru_content ol li {
-  padding: 10px 0;
-}
+
 
 section.confirm_form {
   margin-top: 20px;
@@ -103,7 +125,7 @@ section.confirm_form {
   text-align: center;
   max-width: 615px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 40px 0 50px 0;
 }
 .confirm_form_wrap p {
   margin-bottom: 15px;
@@ -122,7 +144,19 @@ input:focus {
   outline: 0 !important;
 }
 .confirm_checkbox {
-  padding: 15px 0;
+    padding: 15px 0;
+    text-align: left;
+    margin-left: 6px;
+}
+.confirm_btn {
+    margin-top: 16px;
+}
+.confirm_btn button {
+    background: #1d75ba !important;
+    color: #fff !important;
+}
+.confirm_btn button:hover {
+    background: #777777 !important;
 }
 .confirm_btn button {
   padding: 12px 24px;
@@ -134,13 +168,26 @@ input:focus {
   background-color: #e0e0e0;
 }
 .confirm_checkbox input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #00000042;
-  border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #1d75ba;
+    border-radius: 5px;
 }
 .confirm_btn i {
   margin-left: 5px;
+}
+.bnr-btm {
+    padding-left: 0;
+    padding-right: 0;
+}
+.bnr-btm-box {
+    background: #1d75ba;
+}
+h2.frm-details-title {
+    color: #1d75ba;
+    font-size: 28px;
+    font-weight: 600;
+    padding-bottom: 16px;
 }
 /* ---technology---page ---*/
 
@@ -184,7 +231,7 @@ input:focus {
 }
 .submit_btn {
   margin-top: 40px;
-}
+}/*
 .submit_btn .btn,
 .start_btn a {
   background-image: linear-gradient(139deg, #26a0f4 0, #10c3de 100%);
@@ -193,16 +240,48 @@ input:focus {
   text-transform: uppercase;
   padding: 12px 24px;
 }
-.play_btn {
-  background-image: linear-gradient(139deg, #26a0f4 0, #10c3de 100%);
-  padding: 18px 36px;
-  color: #fff;
-  font-size: 36px;
-  text-transform: uppercase;
+*/
+.strt-btnn-new a {
+    background: #1d75ba;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
 }
+.strt-btnn-new a:hover {
+  background: #777777;
+}
+.strt-btnn-new {
+    margin-top: 10px;
+}
+.play_btn {
+    background: #1d75ba;
+    padding: 18px 30px;
+    color: #fff;
+    font-size: 36px;
+    border-radius: 50px;
+    border: 2px solid #1d75ba;
+}
+.play_btn:hover {
+    background: #fff;
+    color: #1d75ba;
+    border: 2px solid #1d75ba;
+}
+
+/*
 .playbutton_section .container {
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
   -webkit-box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+}
+*/
+.proced-ques {
+    margin-top: 20px;
+}
+.play-page-new {
+    box-shadow: 0px 1px 8px 0px #777777 !important;
+    padding: 50px 15px 50px 15px !important;
 }
 .play_btn_content {
   margin: 0;
@@ -210,20 +289,88 @@ input:focus {
   list-style: none;
 }
 .play_btn_content li {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1.8;
-  text-transform: uppercase;
-  word-spacing: 4px;
+    font-size: 18px;
+    margin-bottom: 8px;
 }
 .play_btn_content li::before {
-  font-family: "Font Awesome 5 Free";
-  content: "\f00c";
-  display: inline-block;
-  padding-right: 15px;
-  vertical-align: middle;
-  font-weight: 900;
-  background: -webkit-linear-gradient(#26a0f4, #26a0f4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    font-family: "Font Awesome 5 Free";
+    content: "\f00c";
+    display: inline-block;
+    padding-right: 15px;
+    vertical-align: middle;
+    font-weight: 900;
+    background: #1d75ba;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.intrnt-txt {
+    margin-top: 0 !important;
+    text-align: left !important;
+}
+/************************** Instruction Page ************************************/
+
+.instrctn-box {
+    box-shadow: 0px 1px 8px 0px #777777 !important;
+    padding-top: 40px;
+    padding-bottom: 50px;
+}
+p.ensur-sub-title {
+    text-align: center;
+    color: #777777;
+    font-size: 18px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 16px;
+    font-weight: 600;
+}
+.instru_content {
+    margin-top: 20px;
+}
+li.mentioned-list {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+ul.above-list {
+    padding-left: 22px;
+    padding-top: 6px;
+}
+ul.above-list li {
+    font-size: 16px;
+    line-height: 26px;
+}
+li.mentioned-list a {
+    color: #1d75ba;
+}
+li.mentioned-list a:hover {
+    text-decoration: unset;
+}
+.play-btnn {
+    margin-top: 20px !important;
+}
+.fa-play:before {
+    position: relative;
+    left: 3px;
+}
+input[type=checkbox]:after {  
+content: "";
+  opacity: 0;
+  display: block;
+  left: 4px !important;
+  top: 1px !important;
+  position: absolute;
+  width: 8px !important;
+  height: 11px !important;
+  border: 3px solid var(--form--color-text);
+  border-top: 0 !important;
+  border-left: 0 !important;
+  transform: rotate(40deg) !important;
+}
+
+a.qsm-btn.qsm-previous.qmn_btn.mlw_qmn_quiz_link.mlw_previous {
+    display: none;
+}
+a.qsm-btn.qsm-next.qmn_btn.mlw_qmn_quiz_link.mlw_next {
+    display: none;
+}
+.border {
+    border: none !important;
 }

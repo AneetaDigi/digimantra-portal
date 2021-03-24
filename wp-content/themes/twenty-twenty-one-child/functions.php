@@ -151,3 +151,15 @@ function wpshout_save_post_if_submitted() {
     wp_insert_post($post);
     echo 'Saved your post successfully! :)';
 }
+
+
+add_action('after_setup_theme', 'remove_admin_bar');
+function remove_admin_bar() {
+if (!current_user_can('administrator') && !is_admin()) {
+  show_admin_bar(false);
+}
+}
+
+
+/* Disable WordPress Admin Bar for all users */
+add_filter( 'show_admin_bar', '__return_false' );

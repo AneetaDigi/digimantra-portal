@@ -13,53 +13,56 @@ get_header();
 
 <main id="site-content" role="main">
 <section class="banner_section">
-	<div class="container">
+	<div class="container bnrr-cntnt">
 		<div class="banner_wrapper">
 			<div class="banner_logo">
-				<img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/logo-min.png" alt="">
+				<img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/Digimantra-Logo-white-1.png" alt="">
 			</div>
 			<div class="banner_content">
-				<h3>Sample Test</h3>
-				<p>By DigiMantra</p>
+				<h1 class="smpl-title">Interview Assessment</h1>
+				<p class="smpl-sub-title">By DigiMantra Labs</p>
 			</div>
 		</div>
 	</div>
 </section>
 <section class="clock_section">
-	<div class="container bg-white">
-		<div class="clock_wrapper">
+	<div class="container bg-white bnr-btm">
+		<div class="clock_wrapper bnr-btm-box">
 			<div class="minuts">
                  <div class="clock_img">
-					 <img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/timer.svg" alt="timer">
+					 <img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/time-left.png" alt="timer">
 				 </div>
 				 <div class="clock_content">
-					 <h5>15 Minutes</h5>
-					 <p>to take this assessment</p>
+					 <h5 class="minut">30 Minutes</h5>
+					 <p class="assmnt">To take this assessment</p>
 				 </div>
 			</div>
 			<div class="problems">
                  <div class="clock_img">
-					 <img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/problems.svg" alt="problems">
+					 <img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/hypothesis-1.png" alt="problems">
 				 </div>
 				 <div class="clock_content">
-					 <h5>3</h5>
-					 <p>problems to be solved</p>
+					 <h5 class="minut">30</h5>
+					 <p class="assmnt">Problems to be solved</p>
 				 </div>
 			</div>
 		</div>
 	</div>
 </section>
-<section class="playbutton_section mt-5">
-    <div class="container bg-white py-4">
-        <div class="playbutton_wrap text-center">
-            <a href="<?php bloginfo('url'); ?>/questions/" class="btn play_btn"><i class="fas fa-play"></i> Play</a>
-        </div>
-        <ul class="play_btn_content text-center mt-4 ">
-
+<section class="playbutton_section mt-5 play-btnn">
+    <div class="container bg-white py-4 play-page-new">
+        
+        <ul class="play_btn_content text-center mt-4 intrnt-txt">
+			<li>Do not closed tab in between test. Do not click the “Submit” button unless you want to leave early.</li>
+			<li>Do not use any textbook, course notes, or receive help from a test or any other outside source.</li>
+			<li>Please make sure you are on a good internet connection</li>
             <li>Camera will be accessed</li>
             <li>Time will begin</li>
-            <li>Please make sure you are on a good internet connection</li>
-</ul>
+			</ul>
+		<div class="playbutton_wrap text-center proced-ques">
+            <a href="<?php bloginfo('url'); ?>/questions/" class="btn play_btn"><i class="fas fa-play"></i> </a>
+			
+        </div>
     </div>
 </section>
 </main><!-- #site-content -->
