@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<?php /* Template Name: Questions Page */ ?>
+<?php /* Template Name: Questions Page */
+ require_once( "wp-config.php");
+require_once( "wp-load.php");
+ ?>
 
 <script>
 /*setTimeout(function () {
@@ -25,48 +28,60 @@ get_header();
 
 
 <main id="site-content" role="main">
-<section class="banner_section">
+<section class="banner_sectiontest-ques">
     <div class="container">
         <div class="banner_wrapper">
             <div class="banner_logo">
                 <img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/logo-min.png" alt="">
             </div>
-            <div class="banner_content">
-                <h3>Sample Test</h3>
-                <p>By DigiMantra</p>
-            </div>
+            
         </div>
     </div>
 </section>
-<section class="clock_section">
-    <div class="container bg-white">
-        <div class="clock_wrapper">
-            <div class="minuts">
+<section class="clock_sectiontest">
+  <div class="container bg-white bnr-btm">
+    <div class="clock_wrapper bnr-btm-box questn">
+      <div class="minuts">
                  <div class="clock_img">
-                     <img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/timer.svg" alt="timer">
-                 </div>
-                 <div class="clock_content">
-                     <h5>15 Minutes</h5>
-                     <p>to take this assessment</p>
-                 </div>
-            </div>
-            <div class="problems">
+           <img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/time-left.png" alt="timer">
+         </div>
+         <div class="clock_content">
+          <?php
+          global $wpdb;
+         $term = get_queried_object();
+    $wpdb->get_results($wpdb->prepare("SELECT user_id FROM $wpdb->usermeta WHERE meta_key='time_set' AND $wpdb->usermeta.meta_value LIKE %s", '%' . $term->term_id . '%'));
+   print_r($term);       
+?>
+           <h5 class="minut"><div class="count">
+              <div id="timer"></div> Minutes
+              </div>
+             </h5>
+           <p class="assmnt">To take this assessment</p>
+           
+         </div>
+      </div>
+      <div class="problems">
                  <div class="clock_img">
-                     <img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/problems.svg" alt="problems">
-                 </div>
-                 <div class="clock_content">
-                     <h5>3</h5>
-                     <p>problems to be solved</p>
-                 </div>
-            </div>
-        </div>
+           <img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/hypothesis-1.png" alt="problems">
+         </div>
+         <div class="clock_content">
+           <h5 class="minut">30</h5>
+           <p class="assmnt">Problems to be solved</p>
+         </div>
+      </div>
     </div>
+  </div>
 </section>
 <section class="question_section">
-    <div class="container bg-white  py-3">
-    <form  method="post" enctype="multipart/form-data">
+    <div class="container bg-white  py-3 vde-box">
+    <div class="tbs-cnt">
+  <p class="tst-authr"><img src="http://schedul.in/wp-content/uploads/2021/03/warning.png"> <span class="wrng">Warning:</span> If you changed your current tab/visit on another page your test will be automatically submitted.</p>
+  </div>
+       <form  id="myForm"  method="post" enctype="multipart/form-data">
+
 
 <style>
+  #hide-answer{display:none;}
     html, body {
         margin: 0!important;
         padding: 0!important;
@@ -82,11 +97,14 @@ get_header();
 <h1 style="display:none;">Auto Stop RecordRTC on Silence</h1>
 
 <br>
+<div class="btnrcdng">
 <button id="btn-start-recording" style="display:none;">Start Recording</button>
-<button id="btn-stop-recording" style="display:none;" disabled >Stop Recording</button>
+<button id="btn-stop-recording" class="stp"  disabled >Stop Recording</button>
+</div>
 
-<hr>
+<div class="plyvido">
 <video id="playerVideo"  autoplay playsinline height="200px" width="200px;"></video>
+</div>
 
 <span id="blobURL"></span><br>
 <span id="download"></span>
@@ -97,8 +115,54 @@ get_header();
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.2/RecordRTC.js" integrity="sha512-ct9A+Fsq37O/MmhMrl0o5R8WoS0V1YS2fW69RGnpa4lIQvUhMOA3xbGQ8oy4UK6CeWb8JPu4QippagGlVu1c+A==" crossorigin="anonymous"></script>
-<script>
-var video = document.querySelector('video');
+  <?php 
+if (isset($_POST['submit']))
+    {  
+ ?>
+<script type="text/javascript">
+window.location = "/thank-you/";
+</script>      
+    <?php
+
+    } ?>
+       <script type="text/javascript">
+            
+
+      var count = 0;
+
+$(window).on('blur', function () {
+    count++;
+    //alert(count);
+    if (count == '3 ') {
+     // function submitform(){
+          console.log("tstst");
+           
+
+
+  //alert('test');
+   document.forms["myForm"].submit();
+//}
+         window.location.href = '/thank-you/'; 
+
+        //}
+    }
+   
+});
+    window.onload=function(){
+        var auto = setTimeout(function(){ autoRefresh(); }, 9000000);
+
+        function submitform(){
+          //alert('test');
+          document.forms["myForm"].submit();
+        }
+
+        function autoRefresh(){
+           clearTimeout(auto);
+           auto = setTimeout(function(){ submitform(); autoRefresh(); }, 9000000);
+        }
+    }
+</script>
+<script>var video = document.querySelector('video');
 var h1 = document.querySelector('h1');
 var default_h1 = h1.innerHTML;
 
@@ -106,10 +170,12 @@ function captureCamera(callback) {
     navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(camera) {
         callback(camera);
     }).catch(function(error) {
-        alert('Unable to capture your camera. Please check console logs.');
-        console.error(error);
+        alert('Unable to capture your camera. Turn on your camera and try again..!');
+    location.href = '/';
+        //die("Can't connect!");
     });
 }
+  
 
 
 
@@ -207,7 +273,7 @@ var formData = new FormData();
 formData.append(fileType + '-filename', fileName);
 formData.append(fileType + '-blob', blob);
 
-xhr('<?php bloginfo('url'); ?>/wp-content/themes/twenty-twenty-one-child/templates/save.php', formData, function (fName) {
+xhr('C:/xampp/htdocs/wp-content/themes/twenty-twenty-one-child/templates/save.php', formData, function (fName) {
    // window.open(location.href + fName);
 //console.log(formData);
 });
@@ -263,7 +329,7 @@ var recorder; // globally accessible
 
         recorder.startRecording();
 
-        var max_seconds = 2;
+        var max_seconds = 30;
         var stopped_speaking_timeout;
         var speechEvents = hark(camera, {});
 
@@ -329,11 +395,71 @@ document.getElementById('btn-stop-recording').onclick = function() {
 
 
 //</script>
+    
+    <script>
 
+//   setTimeout("window.location='/thank-you/'",120000); 
+      
+//      var minutes = 30, seconds = 000;   jQuery(function(){     jQuery("span.countdown").html(minutes + ":" + seconds);     var count = setInterval(function(){ if(parseInt(minutes) < 0) { clearInterval(count); } else {jQuery("span.countdown").html(minutes + ":" + seconds); if(seconds == 0) { minutes--; if(minutes < 10) minutes = "0"+minutes; seconds = 59;} seconds--; if(seconds < 10) minutes = "0"+seconds;} }, 1000);   })
+
+//  timer js start
+
+      
+
+var sec         = 1800,
+    countDiv    = document.getElementById("timer"),
+    secpass,
+    countDown   = setInterval(function () {
+        'use strict';
+        
+        secpass();
+    }, 1000);
+
+function secpass() {
+    'use strict';
+    
+    var min     = Math.floor(sec / 60),
+        remSec  = sec % 60;
+    
+    if (remSec < 10) {
+        
+        remSec = '0' + remSec;
+    
+    }
+    if (min < 10) {
+        
+        min = '0' + min;
+    
+    }
+    countDiv.innerHTML = min + ":" + remSec;
+    
+    if (sec > 0) {
+        
+        sec = sec - 1;
+        
+    } else {
+        
+        clearInterval(countDown);
+        
+        //countDiv.innerHTML = 'countdown done';
+        
+     window.location.href = '/thank-you/'; 
+        
+    }
+}
+// end timer js
+      
+</script>
+ 
 <footer style="margin-top: 20px;"><small id="send-message"></small></footer>
 <script src="https://www.webrtc-experiment.com/common.js"></script>
+<div id="show-answer">
+   <?php echo do_shortcode('[qsm quiz=3]');?>
+</div>
+<div id="hide-answer">
+  <p>You dont'have have camera.You are not able to do this test</p>
+</div>
 
-         <?php echo do_shortcode('[qsm quiz=3]');?>
        <input type="hidden" name="video_url" value="" id="video_url"> 
  <input type="hidden" name="video_ct" value="" id="video_ct"> 
        <div class="submit_btn text-center">
@@ -346,8 +472,7 @@ document.getElementById('btn-stop-recording').onclick = function() {
 </main><!-- #site-content -->
 
 <?php 
- require_once( "wp-config.php");
-require_once( "wp-load.php");
+
 global $wpdb;
 
 if ( isset( $_POST['submit'] ) ){
@@ -382,7 +507,7 @@ $_POST['video_url'];
 
      $testing = $wpdb->insert( $tablename, $data);
     if(  $testing  ) { 
-      die;
+      //die;
       $url = "/thank-you/";
 echo '<script type="text/javascript">
         location.replace("../thank-you");
@@ -393,10 +518,10 @@ echo '<script type="text/javascript">
 
 ?>
 <script>
-  $(".qsm-btn").click(function(){
+//   $(".qsm-btn").click(function(){
     
-  $('form').css('display','none');
-  });
+//   $('form').css('display','none');
+//   });
   </script>
 
 </html>

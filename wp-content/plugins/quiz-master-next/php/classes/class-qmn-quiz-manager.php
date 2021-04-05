@@ -852,7 +852,7 @@ class QMNQuizManager {
             <div class="qmn_page_counter_message"></div>
             <div class="qsm-progress-bar" style="display:none;"><div class="progressbar-text"></div></div>
             <a class="qsm-btn qsm-next qmn_btn mlw_qmn_quiz_link mlw_next" href="#"><?php echo esc_html($options->next_button_text); ?></a>
-            <input type='submit' class='qsm-btn qsm-submit-btn qmn_btn' value='<?php echo esc_attr(htmlspecialchars_decode($options->submit_button_text, ENT_QUOTES)); ?>' />
+            <input type='submit' class='qsm-btn qsm-submit-btn qmn_btn' name ="submit" data-target="##" value='<?php echo esc_attr(htmlspecialchars_decode($options->submit_button_text, ENT_QUOTES)); ?>' />
             </div>
    
         <input type='hidden' name='qmn_question_list' value='<?php echo esc_attr($question_list); ?>' />
@@ -1038,7 +1038,7 @@ class QMNQuizManager {
         do_action('mlw_qmn_end_quiz_section');
         $section_display .= ob_get_contents();
         ob_end_clean();
-        $section_display .= "<input type='submit' class='qsm-btn qsm-submit-btn qmn_btn' value='" . esc_attr(htmlspecialchars_decode($qmn_quiz_options->submit_button_text, ENT_QUOTES)) . "' />";
+        $section_display .= "<input type='submit'  class='qsm-btn qsm-submit-btn qmn_btn' value='" . esc_attr(htmlspecialchars_decode($qmn_quiz_options->submit_button_text, ENT_QUOTES)) . "' />";
         $section_display .= "</div>";
 
         return $section_display;
@@ -2265,3 +2265,6 @@ add_filter( 'wp_video_extensions', function( $exts ) {
 	$exts[] = 'wmv';
 	return $exts;
 });
+
+
+?>
