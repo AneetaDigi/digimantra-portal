@@ -74,7 +74,7 @@ get_header();
             <li>Time will begin</li>
 			</ul>
 		<div class="playbutton_wrap text-center proced-ques">
-            <a href="http://localhost/digimantra-portal/questions/" class="btn play_btn"> </a>
+            <a href="/questions/" class="btn play_btn"> </a>
 			
         </div>
     </div>
