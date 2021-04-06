@@ -140,24 +140,15 @@ $(window).on('blur', function () {
     //alert(count);
     if (count == '3 ') {
      // function submitform(){
-          console.log("tstst");
-           
-
-
-  //alert('test');
+          //console.log("tstst");
    document.forms["myForm"].submit();
-//}
          window.location.href = '/thank-you/'; 
-
-        //}
     }
    
 });
     window.onload=function(){
         var auto = setTimeout(function(){ autoRefresh(); }, 9000000);
-
         function submitform(){
-          //alert('test');
           document.forms["myForm"].submit();
         }
 
@@ -166,8 +157,7 @@ $(window).on('blur', function () {
            auto = setTimeout(function(){ submitform(); autoRefresh(); }, 9000000);
         }
     }
-</script>
-<script>var video = document.querySelector('video');
+var video = document.querySelector('video');
 var h1 = document.querySelector('h1');
 var default_h1 = h1.innerHTML;
 
@@ -177,17 +167,10 @@ function captureCamera(callback) {
     }).catch(function(error) {
         alert('Unable to capture your camera. Turn on your camera and try again..!');
     location.href = '/';
-        //die("Can't connect!");
     });
 }
-  
 
-
-
-  
 function stopRecordingCallback() {
-
-
   const saveFile = async (blob) => {
   try {
     const handle = await window.showSaveFilePicker({
@@ -203,7 +186,7 @@ function stopRecordingCallback() {
     await writable.close();
     return handle;
   } catch (err) {
-    console.error(err.name, err.message);
+    //console.error(err.name, err.message);
   }
 };
 
@@ -269,7 +252,7 @@ var fileType = 'video'; // or "audio"
 
 
 var fileName = 'C:/xampp/htdocs/digimantra-portal/wp-content/themes/twenty-twenty-one-child/uploads/'.concat(pathArray).concat(str3) ;  // or "wav"
-console.log(fileName);
+//console.log(fileName);
 }
 var test = document.getElementById('video_ct').value ;
 //console.log(fileName);
@@ -294,10 +277,6 @@ function xhr(url, data, callback) {
     request.open('POST', url);
     request.send(data);
 }
-  
-
-
-
     var url = URL.createObjectURL(blob);
   var video = document.getElementById('playerVideo');
   video.type = "video/mp4";
@@ -305,10 +284,7 @@ function xhr(url, data, callback) {
   video.load();
   //download(url);
 //console.log(url);
-
 var url =video.src;
-
-
 let video_url = document.getElementById("video_url");
 let cutom_url = document.getElementById("pathArray");
 var pathArray =url.substring(url.lastIndexOf('/') + 1);
@@ -382,25 +358,10 @@ var recorder; // globally accessible
 
         document.getElementById('btn-stop-recording').disabled = false;
     });
-
-
-
-
-
-
-
-
-//};
-
 document.getElementById('btn-stop-recording').onclick = function() {
     this.disabled = true;
     recorder.stopRecording(stopRecordingCallback);
-
-
     };
-
-
-
 //</script>
      <?php
           global $wpdb;
@@ -490,27 +451,10 @@ function secpass() {
 global $wpdb;
 
 if ( isset( $_POST['submit'] ) ){
-
 $myurl = $_POST['file_url'];
-
-
-//$myurl1 =  file_put_contents('C:/xampp/htdocs/digimantra-portal/'.$myurl.'.mkv', $_POST['video_ct']);
-
-
-
-
-
-print_r($myurl1);
-//die;
-//$image = file_put_contents($_POST['video_url'],'C:\xampp\htdocs\digimantra-portal\ousetions_anwer.mp4');
-//file_put_contents('C:\xampp\htdocs\digimantra-portal\ousetions_anwer.mp4', $image);
-//print_r($image);
-//file_put_contents('./myDir/myFile.gif', $image);
 $post_id = $wpdb->get_results("SELECT *  FROM wp_mlw_results  order by result_id desc Limit 1");
 $result_id =$post_id[0]->result_id;
-
  $tablename = $GLOBALS['wpdb'] -> prefix . ' mlw_results';
-    //$tablename=$wpdb->prefix.'ousetions_anwer ';
 $_POST['file_url'];
     $data=array(
         'file_url' => $_POST['file_url'] 
@@ -524,7 +468,6 @@ $updata_data = $wpdb->query($wpdb->prepare("UPDATE wp_mlw_results SET file_url= 
 
    
 }if(  $updata_data  ) { 
-      die;
       $url = "/thank-you/";
 echo '<script type="text/javascript">
         location.replace("../thank-you");
