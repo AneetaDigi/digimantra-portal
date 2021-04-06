@@ -14,6 +14,6 @@ foreach(array('video', 'audio') as $type) {
             echo(" problem moving uploaded file");
         }
     
-        echo($fileName);
+       
     }
 }

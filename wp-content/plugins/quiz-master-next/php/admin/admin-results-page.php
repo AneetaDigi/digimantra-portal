@@ -15,6 +15,7 @@ function qsm_generate_admin_results_page() {
 	if ( ! current_user_can( 'moderate_comments' ) ) {
 		return;
 	}
+	
 
 	// Retrieves the current stab and all registered tabs.
 	global $mlwQuizMasterNext;
@@ -102,6 +103,7 @@ function qsm_results_overview_tab_content() {
 			array( '%d' )
 		);
 
+
 		if ( false === $results ) {
 			$error = $wpdb->last_error;
 			if ( empty( $error ) ) {
@@ -164,8 +166,10 @@ function qsm_results_overview_tab_content() {
 	if ( isset( $_GET['quiz_id'] ) && ! empty( $_GET['quiz_id'] ) ) {
 		$quiz_id       = intval( $_GET['quiz_id'] );
 		$qsm_results_count = $wpdb->get_var( "SELECT COUNT(result_id) FROM {$wpdb->prefix}mlw_results WHERE `deleted`='0' AND `quiz_id`='{$quiz_id}' {$search_phrase_sql}" );
+	
 	} else {
 		$qsm_results_count = $wpdb->get_var( "SELECT COUNT(result_id) FROM {$wpdb->prefix}mlw_results WHERE `deleted`='0' {$search_phrase_sql}" );
+	
 	}
 
 	// Gets the order by arg. Uses switch to create SQL to prevent SQL injection.
@@ -204,8 +208,10 @@ function qsm_results_overview_tab_content() {
 	if ( isset( $_GET['quiz_id'] ) && ! empty( $_GET['quiz_id'] ) ) {
 		$quiz_id       = intval( $_GET['quiz_id'] );
 		$mlw_quiz_data = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}mlw_results WHERE deleted='0' AND quiz_id = %d $search_phrase_sql $order_by_sql LIMIT %d, %d", $quiz_id, $result_begin, $table_limit ) );
+	
 	} else {
 		$mlw_quiz_data = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}mlw_results WHERE deleted = '0' $search_phrase_sql $order_by_sql LIMIT %d, %d", $result_begin, $table_limit ) );
+	//print_r($mlw_quiz_data);
 	}
 
 	wp_enqueue_script( 'jquery' );
@@ -337,6 +343,7 @@ function qsm_results_overview_tab_content() {
 				<?php
 				$table_heading_displays = '';
 				$table_heading_displays .= '<th>' . esc_html__( 'Score', 'quiz-master-next' ) . '</th>';
+					$table_heading_displays .= '<th>' . esc_html__( 'Video', 'quiz-master-next' ) . '</th>';
 				$table_heading_displays .= '<th>' . esc_html__( 'Time To Complete', 'quiz-master-next' ) . '</th>';
 				$table_heading_displays .= '<th>' . esc_html__( 'Name', 'quiz-master-next' ) . '</th>';
 				$table_heading_displays .= '<th>' . esc_html__( 'Business', 'quiz-master-next' ) . '</th>';
@@ -357,6 +364,7 @@ function qsm_results_overview_tab_content() {
 			$alternate   = "";
 			if ( $mlw_quiz_data ) {
 				foreach ( $mlw_quiz_data as $mlw_quiz_info ) {
+					echo $mlw_quiz_info->file_url;
 					$quiz_result_item = '';
 					$quiz_result_item_inner = '';
 					if ( $alternate ) {
@@ -385,6 +393,7 @@ function qsm_results_overview_tab_content() {
 					$quiz_result_item .= "<td><input type='checkbox' class='qmn_delete_checkbox' name='delete_results[]' value='" . $mlw_quiz_info->result_id . "' /></td>";
 					$quiz_result_item .= "<td><span style='font-size:16px;'>" . $mlw_quiz_info->quiz_name . "</span><div class='row-actions'><span style='color:green;font-size:16px;'><a href='admin.php?page=qsm_quiz_result_details&&result_id=" . $mlw_quiz_info->result_id . "'>View</a> | <a style='color: red;' onclick=\"deleteResults('" . $mlw_quiz_info->result_id . "','" . esc_js( $mlw_quiz_info->quiz_name ) . "')\" href='#'>Delete</a></span></div></td>";
 					$form_type   = isset( $mlw_quiz_info->form_type ) ? $mlw_quiz_info->form_type : 0;
+					$quiz_result_item_inner .= "<td class='post-title column-title'><video width='320' height='100' controls src='C:/xampp/htdocs/digimantra-portal/wp-content/themes/twenty-twenty-one-child/uploads/ ".$mlw_quiz_info->file_url."'></td>";
 					if ( $form_type == 1 || $form_type == 2 ) {
 						$quiz_result_item_inner .= "<td><span style='font-size:16px;'>" . __( 'Not Graded', 'quiz-master-next' ) . "</span></td>";
 					} else {

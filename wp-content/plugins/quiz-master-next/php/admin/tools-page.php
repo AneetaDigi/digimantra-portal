@@ -199,6 +199,7 @@ function qsm_audit_box() {
 				echo "<tr{$alternate}>";
 				echo "<td>{$audit->trail_id}</td>";
 				echo "<td>{$audit->action_user}</td>";
+				
 				echo "<td>{$audit->action}</td>";
 				echo "<td>{$audit->time}</td>";
 				echo "</tr>";

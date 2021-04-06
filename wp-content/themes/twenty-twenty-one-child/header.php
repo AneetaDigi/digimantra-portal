@@ -10,14 +10,13 @@
  * @subpackage Twenty_Twenty_One
  * @since Twenty Twenty-One 1.0
  */
-
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?> <?php twentytwentyone_the_html_classes(); ?>>
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    
     <script>
     document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
@@ -59,14 +58,7 @@
     text-transform: uppercase;
     font-size: 16px;
 }
-    /*
-.confirm_btn button:hover {
-    background-image: url(<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/abstract-blue-white-wave-background_41084-451.jpg) !important;
-    color: #000 !important;
-    background-size: cover;
-    background-position: center;
-}
-    */
+    
 .strt-btnn-new a {
     color: #fff;
     padding: 12px 40px;
@@ -133,16 +125,9 @@ input.qsm-btn.qsm-submit-btn.qmn_btn {
     border: unset;
     background-size: cover;
     background-position: bottom;
-    background-image: url(<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/blue-concrete-wall-textures-background_74190-7757.jpg);
+    background-image: url(<?php bloginfo('url'); ?>/wp-content/uploads/2021/04/blue-concrete-wall-textures-background_74190-7757.jpg);
 }
-    /*
-input.qsm-btn.qsm-submit-btn.qmn_btn:hover {
-    background-image: url(<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/abstract-blue-white-wave-background_41084-451.jpg);
-    color: #000 !important;
-    background-size: cover;
-    background-position: center;
-}
-    */
+    
     input#next-question {
     color: #fff !important;
     background-image: url(<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/blue-concrete-wall-textures-background_74190-7757.jpg) !important;
@@ -185,6 +170,19 @@ input.qsm-btn.qsm-submit-btn.qmn_btn:hover {
     background-position: bottom;
     background-image: url(<?php bloginfo('url'); ?>/wp-content/uploads/2021/04/blue-concrete-wall-textures-background_74190-7757.jpg);
 }
+.submit_bttn:after {
+    content: '';
+    background: url(<?php bloginfo('url'); ?>/wp-content/uploads/2021/04/Untitled-1.jpg);
+    display: block;
+    position: absolute;
+    width: 272px;
+    height: 12px;
+    background-repeat: no-repeat;
+    text-align: center;
+    top: 68px;
+    display: none;
+    left: 43%;
+}
 </style>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
@@ -199,6 +197,9 @@ input.qsm-btn.qsm-submit-btn.qmn_btn:hover {
            </div>
      </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
                    <script type="text/javascript">
 jQuery(function() {
 jQuery("#action-button").click(function() {
@@ -210,13 +211,13 @@ jQuery("#action-button").click(function() {
 $(location).attr('href', url);
 })
 });
-
-
-    
-
-        
-</script>                                  
-      
+</script>   
+<script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+    </script>                                
    </header>
 <div id="content" class="site-content">
        <div id="primary" class="content-area">

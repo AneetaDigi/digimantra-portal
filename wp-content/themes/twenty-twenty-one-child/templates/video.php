@@ -46,12 +46,8 @@ get_header();
            <img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/time-left.png" alt="timer">
          </div>
          <div class="clock_content">
-          <?php
-          global $wpdb;
-         $term = get_queried_object();
-    $wpdb->get_results($wpdb->prepare("SELECT user_id FROM $wpdb->usermeta WHERE meta_key='time_set' AND $wpdb->usermeta.meta_value LIKE %s", '%' . $term->term_id . '%'));
-   print_r($term);       
-?>
+         
+
            <h5 class="minut"><div class="count">
               <div id="timer"></div> Minutes
               </div>
@@ -65,7 +61,16 @@ get_header();
            <img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/hypothesis-1.png" alt="problems">
          </div>
          <div class="clock_content">
-           <h5 class="minut">30</h5>
+          <?php 
+            if( $author_field){
+//echo $author_field;
+?>
+
+           <h5 class="minut"><?php echo $author_field; ?> Minutes</h5>
+          
+          <?php }else{ ?>
+          <h5 class="minut">30 Minutes</h5>
+        <?php } ?>
            <p class="assmnt">Problems to be solved</p>
          </div>
       </div>
@@ -75,11 +80,11 @@ get_header();
 <section class="question_section">
     <div class="container bg-white  py-3 vde-box">
     <div class="tbs-cnt">
-  <p class="tst-authr"><img src="http://schedul.in/wp-content/uploads/2021/03/warning.png"> <span class="wrng">Warning:</span> If you changed your current tab/visit on another page your test will be automatically submitted.</p>
+  <p class="tst-authr"><img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/warning.png"> <span class="wrng">Warning:</span> If you changed your current tab/visit on another page your test will be automatically submit after 3 attempts.</p>
   </div>
        <form  id="myForm"  method="post" enctype="multipart/form-data">
 
-
+<input type="hidden" name="file_url" value="" id="file_url"> 
 <style>
   #hide-answer{display:none;}
     html, body {
@@ -99,7 +104,7 @@ get_header();
 <br>
 <div class="btnrcdng">
 <button id="btn-start-recording" style="display:none;">Start Recording</button>
-<button id="btn-stop-recording" class="stp"  disabled >Stop Recording</button>
+<button id="btn-stop-recording"   disabled >Stop Recording</button>
 </div>
 
 <div class="plyvido">
@@ -115,7 +120,7 @@ get_header();
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.2/RecordRTC.js" integrity="sha512-ct9A+Fsq37O/MmhMrl0o5R8WoS0V1YS2fW69RGnpa4lIQvUhMOA3xbGQ8oy4UK6CeWb8JPu4QippagGlVu1c+A==" crossorigin="anonymous"></script>
-  <?php 
+   <?php 
 if (isset($_POST['submit']))
     {  
  ?>
@@ -124,7 +129,7 @@ window.location = "/thank-you/";
 </script>      
     <?php
 
-    } ?>
+    } ?> 
        <script type="text/javascript">
             
 
@@ -249,6 +254,7 @@ function stopRecordingCallback() {
  
  //video_url.value=pathArray;
     document.getElementById('video_ct').value = url
+     document.getElementById('file_url').value = pathArray
   
 const numbers = [1, 2, 3, 4, 5];
  for (i=0;i< numbers.length; i++){
@@ -262,7 +268,7 @@ var res = str1.concat(str2, str3);
 var fileType = 'video'; // or "audio"
 
 
-var fileName = '/wp-content/themes/twenty-twenty-one-child/uploads/'.concat(pathArray).concat(str3) ;  // or "wav"
+var fileName = 'C:/xampp/htdocs/digimantra-portal/wp-content/themes/twenty-twenty-one-child/uploads/'.concat(pathArray).concat(str3) ;  // or "wav"
 console.log(fileName);
 }
 var test = document.getElementById('video_ct').value ;
@@ -273,7 +279,7 @@ var formData = new FormData();
 formData.append(fileType + '-filename', fileName);
 formData.append(fileType + '-blob', blob);
 
-xhr('C:/xampp/htdocs/wp-content/themes/twenty-twenty-one-child/templates/save.php', formData, function (fName) {
+xhr('<?php bloginfo('url'); ?>/wp-content/themes/twenty-twenty-one-child/templates/save.php', formData, function (fName) {
    // window.open(location.href + fName);
 //console.log(formData);
 });
@@ -304,6 +310,7 @@ var url =video.src;
 
 
 let video_url = document.getElementById("video_url");
+let cutom_url = document.getElementById("pathArray");
 var pathArray =url.substring(url.lastIndexOf('/') + 1);
 //console.log(pathArray[0]);
 
@@ -395,7 +402,15 @@ document.getElementById('btn-stop-recording').onclick = function() {
 
 
 //</script>
-    
+     <?php
+          global $wpdb;
+        $current_user_id = get_current_user_id();   
+        //echo $current_user_id;
+        $author_field = get_field('time_set', 'user_'. $current_user_id );
+//$variable = get_field('time_set', $current_user_id);
+//echo $author_field;
+?>
+<p><?php echo the_field('time_set', $current_user_id); ?></p>
     <script>
 
 //   setTimeout("window.location='/thank-you/'",120000); 
@@ -406,7 +421,7 @@ document.getElementById('btn-stop-recording').onclick = function() {
 
       
 
-var sec         = 1800,
+var sec         = <?php echo $author_field;?>,
     countDiv    = document.getElementById("timer"),
     secpass,
     countDown   = setInterval(function () {
@@ -450,8 +465,6 @@ function secpass() {
 // end timer js
       
 </script>
- 
-<footer style="margin-top: 20px;"><small id="send-message"></small></footer>
 <script src="https://www.webrtc-experiment.com/common.js"></script>
 <div id="show-answer">
    <?php echo do_shortcode('[qsm quiz=3]');?>
@@ -459,6 +472,7 @@ function secpass() {
 <div id="hide-answer">
   <p>You dont'have have camera.You are not able to do this test</p>
 </div>
+
 
        <input type="hidden" name="video_url" value="" id="video_url"> 
  <input type="hidden" name="video_ct" value="" id="video_ct"> 
@@ -477,7 +491,7 @@ global $wpdb;
 
 if ( isset( $_POST['submit'] ) ){
 
-$myurl = $_POST['video_url'];
+$myurl = $_POST['file_url'];
 
 
 //$myurl1 =  file_put_contents('C:/xampp/htdocs/digimantra-portal/'.$myurl.'.mkv', $_POST['video_ct']);
@@ -492,27 +506,30 @@ print_r($myurl1);
 //file_put_contents('C:\xampp\htdocs\digimantra-portal\ousetions_anwer.mp4', $image);
 //print_r($image);
 //file_put_contents('./myDir/myFile.gif', $image);
+$post_id = $wpdb->get_results("SELECT *  FROM wp_mlw_results  order by result_id desc Limit 1");
+$result_id =$post_id[0]->result_id;
 
- $tablename = $GLOBALS['wpdb'] -> prefix . 'ousetions_anwer';
+ $tablename = $GLOBALS['wpdb'] -> prefix . ' mlw_results';
     //$tablename=$wpdb->prefix.'ousetions_anwer ';
-$_POST['video_url'];
+$_POST['file_url'];
     $data=array(
-        'video_url' => $_POST['video_url'], 
-        'language' => $_POST['language'],
-         'Conditional' => $_POST['Conditional'],
-          'statement' => $_POST['statement']
-
+        'file_url' => $_POST['file_url'] 
+      
          );
 //print_r($data);
+$updata_data = $wpdb->query($wpdb->prepare("UPDATE wp_mlw_results SET file_url= '".$_POST['file_url']."' WHERE result_id='".$result_id."' " ));
+//print_r($updata_data);
+//echo "UPDATE wp_mlw_results SET file_url= '".$_POST['file_url']."' WHERE result_id='".$result_id."' ";
+//die;
 
-     $testing = $wpdb->insert( $tablename, $data);
-    if(  $testing  ) { 
-      //die;
+   
+}if(  $updata_data  ) { 
+      die;
       $url = "/thank-you/";
 echo '<script type="text/javascript">
         location.replace("../thank-you");
         </script>';    }
-}
+
 
 
 

@@ -33,7 +33,21 @@ get_header();
 					 <img src="<?php bloginfo('url'); ?>/wp-content/uploads/2021/03/time-left.png" alt="timer">
 				 </div>
 				 <div class="clock_content">
-					 <h5 class="minut">30 Minutes</h5>
+				 	<?php
+          global $wpdb;
+        $current_user_id = get_current_user_id();   
+        //echo $current_user_id;
+        $author_field = get_field('time_set', 'user_'. $current_user_id );
+//$variable = get_field('time_set', $current_user_id);
+        if( $author_field){
+//echo $author_field;
+?>
+
+					 <h5 class="minut"><?php echo $author_field; ?> Minutes</h5>
+					
+					<?php }else{ ?>
+					<h5 class="minut">30 Minutes</h5>
+				<?php } ?>
 					 <p class="assmnt">To take this assessment</p>
 				 </div>
 			</div>
@@ -60,7 +74,7 @@ get_header();
             <li>Time will begin</li>
 			</ul>
 		<div class="playbutton_wrap text-center proced-ques">
-            <a href="<?php bloginfo('url'); ?>/questions/" class="btn play_btn"><i class="fas fa-play"></i> </a>
+            <a href="http://localhost/digimantra-portal/questions/" class="btn play_btn"> </a>
 			
         </div>
     </div>

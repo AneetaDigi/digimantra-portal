@@ -478,6 +478,7 @@ section.clock_sectiontest {
 .quiz_section span {
     font-size: 16px;
     margin-bottom: 12px;
+    font-weight: 600;
 }
 .qmn_mc_answer_wrap label {
     font-size: 15px !important;
@@ -831,35 +832,19 @@ label#answer-label-86 {
 }
 
 /*****************************submit button hover*************************************/
-.submit_btn-actn {
+.submit_bttn {
     margin: 0px auto;
     display: block;
     text-align: center;
     position: relative;
     padding-top: 20px;
 }
-.submit_btn-actn:after {
-    content: '';
-    background: url(http://schedul.in/wp-content/uploads/2021/04/Untitled-1.jpg);
-    display: block;
-    position: absolute;
-    width: 272px;
-    height: 12px;
-    background-repeat: no-repeat;
-    text-align: center;
-    top: 62px;
-    display: none;
-    left: 43%;
-}
-.submit_btn-actn:hover:after {
+.submit_bttn:hover:after {
     display: block;
 }
-.submit_btn-actn input {
+.submit_bttn input {
     margin: 0 auto;
 } 
-.scrn-last-showhide {
-  display: none;
-}
 /************************************************/
 input.mlw_answer_open_text {
     width: 100%;
@@ -873,3 +858,57 @@ input.mlw_answer_open_text {
 a.custom-logo-link {
     pointer-events: none;
 }
+
+/********************Popup CSS Start****************************/
+
+.modal-header {
+  padding: 0;
+    border-bottom: unset;
+}
+.modal-footer {
+    border-top: unset;
+}
+.close {
+    float: right;
+    font-size: 24px;
+    font-weight: 400;
+    color: #fff;
+    background: #1d75ba !important;
+    text-shadow: unset;
+    filter: alpha(opacity=20);
+    border-radius: 45px;
+    padding: 0px 6px 7px 7px !important;
+    position: relative;
+    top: 4px;
+    right: 3px;
+    opacity: unset;
+}
+.close:focus, .close:hover {
+    color: #fff;
+    opacity: unset;
+}
+.modal-content {
+    height: 150px;
+}
+p.not-reg {
+    font-size: 18px;
+    color: #1d75ba;
+    font-weight: 600;
+    padding-top: 6%;
+    text-align: center;
+}
+.close:focus {
+    outline: unset;
+}
+.modal-dialog {
+    margin: 11.75rem auto !important;
+}
+/********************Popup CSS End****************************/
+textarea.mlw_answer_open_text {
+    border: 2px solid #1d75ba !important;
+    margin-top: 12px !important;
+    font-weight: 600 !important;
+}
+
+
+

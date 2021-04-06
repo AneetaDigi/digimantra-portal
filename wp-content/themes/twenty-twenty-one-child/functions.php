@@ -3,14 +3,24 @@
 
  
 
+ 
+
+ 
+
 All functions of this file will be loaded before of parent theme functions.
 Learn more at https://codex.wordpress.org/Child_Themes.
+
+ 
+
+ 
 
  
 
 Note: this function loads the parent stylesheet before, then child theme stylesheet
 (leave it in place unless you know what you are doing.)
 */
+
+ 
 
  
 // add_action( 'wp_enqueue_scripts', 'enqueue_parent_theme_style');
@@ -30,6 +40,8 @@ if ( ! function_exists( 'suffice_child_enqueue_child_styles' ) ) {
           'font-awesome-style',
           get_stylesheet_directory_uri() .'/assets/css/all.min.css'
 
+ 
+
         );
          wp_enqueue_style( 'font-awesome-style');
       //bootstrapp style
@@ -37,13 +49,19 @@ if ( ! function_exists( 'suffice_child_enqueue_child_styles' ) ) {
           'bootstrap-style',
           get_stylesheet_directory_uri() .'/assets/css/bootstrap.min.css'
 
+ 
+
         );
         wp_enqueue_style( 'bootstrap-style');
+
+ 
 
         // loading child style
         wp_register_style(
           'childe2-style',
           get_stylesheet_directory_uri() .'/assets/css/custom.css'
+
+ 
 
         );
         wp_enqueue_style( 'childe2-style');
@@ -51,7 +69,9 @@ if ( ! function_exists( 'suffice_child_enqueue_child_styles' ) ) {
 }
 add_action( 'wp_enqueue_scripts', 'twentytwentyone_child_enqueue_child_styles' );
 
+ 
 
+ 
 
 function my_custom_post_product() {
   $labels = array(
@@ -81,9 +101,11 @@ function my_custom_post_product() {
 }
 add_action( 'init', 'my_custom_post_product' );
 
+ 
 
+ 
 
-
+ 
 
 add_shortcode( 'wpshout_frontend_post', 'wpshout_frontend_post' );
 function wpshout_frontend_post() {
@@ -91,22 +113,36 @@ function wpshout_frontend_post() {
 <div id="postbox">
     <form id="new_post" name="new_post" method="post">
 
+ 
+
     <p><label for="title">Title</label><br />
         <input type="text"  id="title" value="" tabindex="1" size="20" name="title" />
     </p>
+
+ 
 
     <p>
         <label for="content">Post Content</label><br />
         <textarea id="content" tabindex="3" name="content" cols="50" rows="6"></textarea>
     </p>
 
+ 
+
     <p><?php wp_dropdown_categories( 'show_option_none=Category&tab_index=4&taxonomy=category' ); ?></p>
+
+ 
 
     <p><label for="post_tags">Tags</label>
 
+ 
+
     <input type="text" value="" tabindex="5" size="16" name="post_tags" id="post_tags" /></p>
 
+ 
+
     <?php wp_nonce_field( 'wps-frontend-post' ); ?>
+
+ 
 
     <p align="right"><input type="submit" value="Publish" tabindex="6" id="submit" name="submit" /></p>
     
@@ -114,6 +150,8 @@ function wpshout_frontend_post() {
 </div>
     <?php
 }
+
+ 
 
 
 function wpshout_save_post_if_submitted() {
@@ -123,11 +161,15 @@ function wpshout_save_post_if_submitted() {
         return;
     }
 
+ 
+
     // Check that the nonce was set and valid
     if( !wp_verify_nonce($_POST['_wpnonce'], 'wps-frontend-post') ) {
         echo 'Did not save because your form seemed to be invalid. Sorry';
         return;
     }
+
+ 
 
     // Do some minor form validation to make sure there is content
     if (strlen($_POST['title']) < 3) {
@@ -138,6 +180,8 @@ function wpshout_save_post_if_submitted() {
         echo 'Please enter content more than 100 characters in length';
         return;
     }
+
+ 
 
     // Add the content of the form to $post as an array
     $post = array(
@@ -152,6 +196,8 @@ function wpshout_save_post_if_submitted() {
     echo 'Saved your post successfully! :)';
 }
 
+ 
+
 
 add_action('after_setup_theme', 'remove_admin_bar');
 function remove_admin_bar() {
@@ -160,6 +206,85 @@ if (!current_user_can('administrator') && !is_admin()) {
 }
 }
 
+ 
+
 
 /* Disable WordPress Admin Bar for all users */
 add_filter( 'show_admin_bar', '__return_false' );
+
+ 
+
+add_action( 'show_user_profile', 'Add_user_fields' );
+add_action( 'edit_user_profile', 'Add_user_fields' );
+function Add_user_fields( $user ) {
+
+ 
+
+
+  
+
+ 
+
+ ?>
+    <table class="form-table">
+      
+        <tr>
+            <th><label for="dropdown">Select Test</label></th>
+            <td>
+                <?php 
+                //get dropdown saved value
+                $selected = get_the_author_meta('pmpro_email_confirmation_key', $user->ID); //there was an extra ) here that was not needed 
+                ?>
+                <select name="user_select" id="user_select">
+                  <?php  
+      global $wpdb;
+
+ 
+
+     $result = $wpdb->get_results ( "SELECT * FROM wp_mlw_quizzes" );
+     foreach($result as $result1){
+$quiz_id = $result1->quiz_id;
+//echo $quiz_id;
+//$results = $wpdb->get_results( "SELECT * FROM wp_mlw_quizzes"); // Query to fetch data from database table and storing in $results
+   $quiz_name = $wpdb->get_results("SELECT quiz_name FROM wp_mlw_quizzes WHERE quiz_id = ".$quiz_id." ");
+
+ 
+
+      //$email = $wpdb->get_var("SELECT * FROM wp_mlw_quizzes ");
+
+ 
+
+   // Echo the user's email address
+   //print_r($quiz_name);
+?>
+                    <option value="validated" <?php echo $quiz_name[0]->quiz_name;?>><?php echo $quiz_name[0]->quiz_name;?></option>
+                    <?php } ?>
+                </select>
+            </td>
+        </tr>
+    </table>
+<?php } 
+
+ 
+
+ 
+
+ 
+
+add_action( 'personal_options_update', 'save_user_fields' );
+add_action( 'edit_user_profile_update', 'save_user_fields' );
+
+ 
+
+ 
+
+ 
+
+function save_user_fields( $user_id ) {
+    if ( !current_user_can( 'edit_user', $user_id ) ){
+        return false;
+    }
+    //save dropdown
+    update_usermeta( $user_id, 'pmpro_email_confirmation_key', $_POST['user_select'] );
+    }
+?>
